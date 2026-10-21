@@ -1,3 +1,0 @@
-student_id: "240210230"
-name: "魏俊杰"
-github_username: "wei-junjie"
