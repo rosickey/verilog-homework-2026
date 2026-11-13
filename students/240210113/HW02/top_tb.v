@@ -1,15 +1,17 @@
 module top_tb;
-wire clk;
+
+reg clk;
+reg reset;
+reg inhibit;
+
 wire [9:0] q;
 wire cout;
-wire led0,led1,led2,led3,led4,led5,led6,led7;
 
-clk_gen u_clk(.clk(clk));
-
+// 例化CD4017
 cd4017 u_cd4017(
     .clk(clk),
-    .reset(1'b0),
-    .inhibit(1'b0),
+    .reset(reset),
+    .inhibit(inhibit),
     .cout(cout),
     .q(q)
 );
@@ -23,12 +25,25 @@ led u5(.clk(q[5]),.out(led5));
 led u6(.clk(q[6]),.out(led6));
 led u7(.clk(q[7]),.out(led7));
 
+// 时钟激励
 initial begin
-    #200 $finish;
+    clk = 1'b0;
+    forever #10 clk = ~clk;
 end
 
+// reset 和 inhibit 激励
+initial begin
+    reset = 1'b1;
+    inhibit = 1'b0;
+    #10  reset = 1'b0;    // 释放复位，开始计数
+    #120 inhibit = 1'b1;  // 拉高inhibit，禁止计数
+    #80 $finish;
+end
+
+// 导出波形文件
 initial begin
     $dumpfile("wave.vcd");
-    $dumpvars(0,top_tb);
+    $dumpvars(0, top_tb);
 end
+
 endmodule
