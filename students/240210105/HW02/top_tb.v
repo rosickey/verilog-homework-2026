@@ -1,33 +1,44 @@
 module top_tb;
-	wire clk;
-	clk_gen u_clk(clk);
+wire clk;
+reg reset;
+reg inhibit;
+wire [9:0] q;
+wire led0,led1,led2,led3,led4,led5,led6,led7;
 
-	reg reset;
-	reg inhibit;
-	wire cout;
-	wire[9:0] q;
-	cd4017 u_cd4017(clk,reset,inhibit,cout,q);
+clk_gen u_clk(.clk(clk));
 
-	wire led0,led1,led2,led3,led4,led5,led6,led7;
-	led u_led0(q[0],led0);
-	led u_led1(q[1],led1);
-	led u_led2(q[2],led2);
-	led u_led3(q[3],led3);
-	led u_led4(q[4],led4);
-	led u_led5(q[5],led5);
-	led u_led6(q[6],led6);
-	led u_led7(q[7],led7);
 
-	initial
-	begin
-		$dumpfile("top_tb.vcd");
-		$dumpvars(0,top_tb);
-		reset=1;
-		inhibit=0;
-		#30 reset=0;
-		#300 reset=1;
-		#100 reset=0;
-		#100 inhibit=1;
-		#200 $finish;
-	end
+cd4017 u_cd4017(
+    .clk(clk),
+    .reset(reset),
+    .inhibit(1'b0),
+    .q(q)
+);
+
+
+led u_led0(.clk(q[0]), .out(led0));
+led u_led1(.clk(q[1]), .out(led1));
+led u_led2(.clk(q[2]), .out(led2));
+led u_led3(.clk(q[3]), .out(led3));
+led u_led4(.clk(q[4]), .out(led4));
+led u_led5(.clk(q[5]), .out(led5));
+led u_led6(.clk(q[6]), .out(led6));
+led u_led7(.clk(q[7]), .out(led7));
+
+initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars;
+    reset = 1'b1; 
+    inhibit=1'b0;
+    #20;
+    reset = 1'b0; 
+    #100;
+    reset = 1'b1; 
+    #20;
+    reset = 1'b0; 
+    inhibit=1'b1;
+    #100;
+    $finish;
+end
+
 endmodule
