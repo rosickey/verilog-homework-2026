@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module top_tb;
 	wire clk;
 	reg en;

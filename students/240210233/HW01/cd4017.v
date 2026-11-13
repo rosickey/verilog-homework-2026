@@ -1,4 +1,4 @@
-Enter file contents here
+`timescale 1ns/1ps
 module cd4017(clk,en,clr,q);
 	input clk,en,clr;
 	output[9:0] q;
