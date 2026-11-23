@@ -10,18 +10,25 @@
 
 > [第一次提交成绩](https://github.com/rosickey/verilog-homework-2026/tree/main/grades/registration-grades.md)
 
-## [第一次作业HW01](https://github.com/rosickey/verilog-homework-2026/tree/main/assignments/HW01)
+## [第一次作业](https://github.com/rosickey/verilog-homework-2026/tree/main/assignments/HW01)
 
 > [HW01成绩](https://github.com/rosickey/verilog-homework-2026/tree/main/grades/HW01-grades.md)
 
 ## [第二次作业](https://github.com/rosickey/verilog-homework-2026/tree/main/assignments/HW02)
 
+> [HW02成绩](https://github.com/rosickey/verilog-homework-2026/tree/main/grades/HW02-grades.md)
+
+## [第三次作业](https://github.com/rosickey/verilog-homework-2026/tree/main/assignments/HW03)
+
+> [HW03成绩](https://github.com/rosickey/verilog-homework-2026/tree/main/grades/HW03-grades.md)
+
+## [第四次作业](https://github.com/rosickey/verilog-homework-2026/tree/main/assignments/HW04)
+
+
 - 1.作业严格按照文件名规则提交！
 - 2.代码风格严格按照课本统一标准。例如，**不能使用“.” .clk这种形式表示参量** **不能使用“.” .clk这种形式表示参量** **不能使用“.” .clk这种形式表示参量**
 - 3.不符合merge合并都已经reverse撤销
 - 4.请严格按照上述要求修改，检查后，再次慎重提交PR
-
-
 
 ## 一、必须遵守的规则
 
