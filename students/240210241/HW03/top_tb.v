@@ -3,34 +3,20 @@ module top_tb;
 	wire clk;
 	reg reset;
 	reg inhibit;
+	wire clk_tens;
 	wire cout_ones;
 	wire cout_tens;
-	wire clk_tens;
 	wire [9:0] q_ones;
 	wire [9:0] q_tens;
 
-	clk_gen u_clk_gen (
-		.clk(clk)
-	);
+	clk_gen u_clk_gen (clk);
 
-	cd4017 u_ones (
-		.clk(clk),
-		.reset(reset),
-		.inhibit(inhibit),
-		.cout(cout_ones),
-		.q(q_ones)
-	);
+	cd4017 u_ones (clk, reset, inhibit, cout_ones, q_ones);
 
 	// 个位 9 变 0 时 cout_ones 由高变低，取反后作为十位的计数脉冲
 	assign clk_tens = ~cout_ones;
 
-	cd4017 u_tens (
-		.clk(clk_tens),
-		.reset(reset),
-		.inhibit(inhibit),
-		.cout(cout_tens),
-		.q(q_tens)
-	);
+	cd4017 u_tens (clk_tens, reset, inhibit, cout_tens, q_tens);
 
 	initial
 	begin
